@@ -1,6 +1,6 @@
 body {
   font-family: "Bruno Ace SC", cursive;
-  background-image: url("../public/images/tronCircles.png");
+  background-image: url("/images/tronCircles.png");
   background-size: cover;
   min-height: 100vh;
   margin: 0;
@@ -21,9 +21,10 @@ body {
   border-radius: 20px;
   letter-spacing: 0.4rem;
   text-shadow: 0 0 20px aqua;
+  text-align: center;
 }
 #board-container {
-  background-image: url("../public/images/tron.png");
+  background-image: url("/images/tron.png");
   background-size: cover;
   width: 35rem;
   display: flex;
