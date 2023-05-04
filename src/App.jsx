@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [board, setBoard] = useState(null);
+  const [xTurn, setXTurn] = useState(true);
+  useEffect(() => {
+    const firstBoard = [];
+    let arr = [];
+    for (let i = 1; i <= 9; i++) {
+      arr.push({ player: null, index: i });
+      if (i % 3 === 0) {
+        firstBoard.push(arr);
+        arr = [];
+      }
+    }
+    setBoard(firstBoard);
+  }, []);
+
+  const handleClick = (e) => {
+    let squareId = e.target.id;
+    let copyBoard = JSON.parse(JSON.stringify(board));
+    copyBoard.map((row, i) => {
+      row.map((square) => {
+        if (square.index == squareId) {
+          if (xTurn) {
+            square.player = "X";
+          } else {
+            square.player = "O";
+          }
+        }
+      });
+    });
+    setBoard(copyBoard);
+    setXTurn(!xTurn);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <h1 className="heading">Tic-Tac-Tron</h1>
+      <div id="board-container">
+        {board &&
+          board.map((row, rowIndex) => {
+            return row.map((square, index) => {
+              return (
+                <div
+                  key={uuidv4()}
+                  className="square"
+                  id={square.index}
+                  onClick={handleClick}
+                >
+                  <h1 id="move">{square.player}</h1>
+                </div>
+              );
+            });
+          })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
