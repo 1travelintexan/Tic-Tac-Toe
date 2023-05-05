@@ -10,7 +10,7 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
 }
 .heading {
@@ -31,14 +31,15 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 15px;
+  margin-top: 20px;
   border-radius: 10px;
   box-shadow: 0 0 60px rgba(112, 247, 245, 0.625);
 }
 
 .square {
-  height: 25vw;
-  width: 25vw;
+  height: 25%;
+  width: 25%;
   background-color: rgba(31, 45, 57, 0.701);
   margin: 10px;
   border-radius: 20px;
@@ -53,8 +54,48 @@ body {
   text-shadow: 0 0 50px aqua;
   font-family: "Bruno Ace SC", cursive;
 }
+#start-btn {
+  background-color: rgba(1, 174, 174, 0.305);
+  color: aqua;
+  border: 1px solid rgb(1, 255, 255);
+  border-radius: 0.2rem;
+  padding: 10px 20px;
+  margin: 20px;
+  font-size: 1.5rem;
+  box-shadow: 0 0 10px aqua;
+  font-family: "Bruno Ace SC", cursive;
+  transition: background-color 0.8s ease-in-out;
+}
+#start-btn:hover {
+  background-color: rgba(33, 242, 242, 0.759);
+  color: black;
+  box-shadow: 0 0 30px aqua;
+}
+#modal-box {
+  padding: 10px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+#transition-modal-title {
+  padding: 0;
+  margin: 0;
+  font-size: 1.8rem;
+  text-align: center;
+  font-family: "Bruno Ace SC", cursive !important;
+}
+#transition-modal-description {
+  font-family: "Bruno Ace SC", cursive !important;
+  font-size: 1.5rem;
+}
 
 @media only screen and (min-width: 800px) {
+  #modal-box {
+    width: 50%;
+    padding: 30px;
+  }
   .heading {
     font-size: 5rem;
     margin: 15px;

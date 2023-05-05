@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import startSound from "/sounds/startSound.mp3";
 import moveSound from "/sounds/moveSound.mp3";
+import TransitionsModal from "./components/Modal";
 function App() {
   const [board, setBoard] = useState([]);
   const [xTurn, setXTurn] = useState(true);
@@ -120,6 +120,7 @@ function App() {
 
   return (
     <div id="page">
+      <TransitionsModal />
       <h1 className="heading">Tic-Tac-Tron</h1>
       <div id="board-container">
         {board &&
