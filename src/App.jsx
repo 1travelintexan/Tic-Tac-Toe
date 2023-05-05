@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
+import AudioPlayer from "react-h5-audio-player";
+import startSound from "../public/sounds/startSound.mp3";
+import moveSound from "../public/sounds/moveSound.mp3";
 function App() {
   const [board, setBoard] = useState([]);
   const [xTurn, setXTurn] = useState(true);
   const [xWon, setXWon] = useState(false);
   const [oWon, setOWon] = useState(false);
+  const startAudio = new Audio(moveSound);
   useEffect(() => {
     const firstBoard = [];
     let arr = [];
@@ -33,6 +36,7 @@ function App() {
   }, [xTurn]);
 
   const handleClick = (e) => {
+    startAudio.play();
     let squareId = e.target.id;
     let copyBoard = JSON.parse(JSON.stringify(board));
     copyBoard.map((row) => {
