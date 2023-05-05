@@ -2,23 +2,17 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import moveSound from "/sounds/moveSound.mp3";
 import TransitionsModal from "./components/Modal";
+import XWonModal from "./components/XWonModal";
+import OWonModal from "./components/OWonModal";
 function App() {
   const [board, setBoard] = useState([]);
   const [xTurn, setXTurn] = useState(true);
   const [xWon, setXWon] = useState(false);
   const [oWon, setOWon] = useState(false);
+  const [playingAgain, setPlayingAgain] = useState(false);
   const startAudio = new Audio(moveSound);
   useEffect(() => {
-    const firstBoard = [];
-    let arr = [];
-    for (let i = 1; i <= 9; i++) {
-      arr.push({ player: null, index: i });
-      if (i % 3 === 0) {
-        firstBoard.push(arr);
-        arr = [];
-      }
-    }
-    setBoard(firstBoard);
+    setGameBoard();
   }, []);
   useEffect(() => {
     if (!xTurn) {
@@ -33,6 +27,19 @@ function App() {
       }
     }
   }, [xTurn]);
+
+  const setGameBoard = () => {
+    const firstBoard = [];
+    let arr = [];
+    for (let i = 1; i <= 9; i++) {
+      arr.push({ player: null, index: i });
+      if (i % 3 === 0) {
+        firstBoard.push(arr);
+        arr = [];
+      }
+    }
+    setBoard(firstBoard);
+  };
 
   const handleClick = (e) => {
     startAudio.play();
@@ -118,9 +125,35 @@ function App() {
     }
   };
 
+  // xWon ? (
+  //   <XWonModal />
+  // ) : oWon ? (
+  //   <OWonModal />
+  // ) : (
+  if (xWon) {
+    return (
+      <XWonModal
+        setBoard={setBoard}
+        setXWon={setXWon}
+        setGameBoard={setGameBoard}
+        setPlayingAgain={setPlayingAgain}
+        setXTurn={setXTurn}
+      />
+    );
+  } else if (oWon) {
+    return (
+      <OWonModal
+        setBoard={setBoard}
+        setOWon={setOWon}
+        setGameBoard={setGameBoard}
+        setPlayingAgain={setPlayingAgain}
+        setXTurn={setXTurn}
+      />
+    );
+  }
   return (
     <div id="page">
-      <TransitionsModal />
+      {!playingAgain && <TransitionsModal />}
       <h1 className="heading">Tic-Tac-Tron</h1>
       <div id="board-container">
         {board &&

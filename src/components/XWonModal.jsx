@@ -19,12 +19,22 @@ const style = {
   p: 8,
 };
 
-export default function TransitionsModal() {
+export default function TransitionsModal({
+  setBoard,
+  setXWon,
+  setGameBoard,
+  setPlayingAgain,
+  setXTurn,
+}) {
   const [open, setOpen] = useState(true);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => {
+    setXTurn(true);
+    setPlayingAgain(true);
     setOpen(false);
     startAudio.play();
+    setBoard([]);
+    setXWon(false);
+    setGameBoard();
   };
   const startAudio = new Audio(startSound);
   return (
@@ -44,16 +54,13 @@ export default function TransitionsModal() {
         <Fade in={open}>
           <Box sx={style} id="modal-box">
             <Typography id="transition-modal-title" variant="h4" component="h3">
-              Will you create the perfect system...
+              User X created the perfect system...
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 4 }}>
-              The User must beat the program Clu in a game of Tic-Tac-Tron
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 4 }}>
-              Are you ready?
+              Is the User ready to play again?
             </Typography>
             <button onClick={handleClose} id="start-btn">
-              Play
+              Restart System
             </button>
           </Box>
         </Fade>
