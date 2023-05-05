@@ -5,41 +5,42 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+#page {
+  height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  justify-content: flex-start;
+  flex-direction: column;
 }
-
 .heading {
-  padding: 20px;
+  padding: 10px;
   color: aqua;
-  background-color: #01161ece;
-  margin-top: -50px;
-  border-radius: 20px;
+  background-color: #01161ee6;
+  border-radius: 10px;
   letter-spacing: 0.4rem;
   text-shadow: 0 0 20px aqua;
   text-align: center;
+  box-shadow: 0 0 60px rgba(112, 247, 245, 0.605);
 }
 #board-container {
   background-image: url("/images/tron.png");
   background-size: cover;
-  width: 35rem;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  border-radius: 30px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 60px rgba(112, 247, 245, 0.625);
 }
 
 .square {
-  height: 8rem;
-  width: 8rem;
-  background-color: rgba(58, 88, 112, 0.391);
-  margin: 20px;
+  height: 25vw;
+  width: 25vw;
+  background-color: rgba(31, 45, 57, 0.701);
+  margin: 10px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -47,8 +48,27 @@ body {
   box-shadow: 0 0 20px rgba(152, 251, 251, 0.733);
 }
 #move {
-  font-size: 6rem;
+  font-size: 4rem;
   color: aqua;
   text-shadow: 0 0 50px aqua;
   font-family: "Bruno Ace SC", cursive;
+}
+
+@media only screen and (min-width: 800px) {
+  .heading {
+    font-size: 5rem;
+    margin: 15px;
+  }
+  #board-container {
+    width: 40vw;
+    margin: 0;
+  }
+  .square {
+    width: 10vw;
+    height: 10vw;
+    margin: 20px;
+  }
+  #move {
+    font-size: 8rem;
+  }
 }
